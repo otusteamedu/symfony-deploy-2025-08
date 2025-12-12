@@ -1,11 +1,11 @@
 # Read the documentation: https://github.com/FriendsOfSymfony/FOSElasticaBundle/blob/master/doc/setup.md
 fos_elastica:
-    serializer: ~
-    clients:
-      default:
-        hosts: [ '%env(resolve:ELASTICSEARCH_DSN)%' ]
-        client_config:
-          ssl_verify: false
+#    serializer: ~
+#    clients:
+#      default:
+#        hosts: [ '%env(resolve:ELASTICSEARCH_DSN)%' ]
+#        client_config:
+#          ssl_verify: false
 
     indexes:
       user:
