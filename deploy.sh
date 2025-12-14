@@ -15,7 +15,7 @@ sudo docker compose up -d
 sleep 10
 docker ps
 
-sudo docker compose exec --user root php-fpm php composer install --no-interaction
+sudo docker compose exec --user root php-fpm composer install --no-interaction
 sudo docker compose exec --user root php-fpm php bin/console doctrine:migrations:migrate --no-interaction
 
 sudo chown www-data:www-data . -vR
