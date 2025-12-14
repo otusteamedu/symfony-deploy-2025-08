@@ -3,7 +3,7 @@
 if [[ $(sudo docker ps -aq| wc -c) -ne 0 ]]; then
   echo "Docker: removing containers"
   sudo docker stop $(docker ps -aq)
-  sudo docker container prune --force
+  sudo docker rm $(docker ps -aq)
 fi
 
 sudo cp deploy/nginx.conf /etc/nginx/conf.d/demo.conf -f
