@@ -2,7 +2,7 @@ sudo cp deploy/nginx.conf /etc/nginx/conf.d/demo.conf -f
 
 sudo service nginx restart
 
-sudo docker compose build --print
+sudo docker compose build
 sudo docker compose up -d
 
 sleep 30
