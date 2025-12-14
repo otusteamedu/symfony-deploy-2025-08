@@ -1,6 +1,6 @@
 before_script:
   - eval $(ssh-agent -s)
-  - ssh-add <(echo "$SSH_PRIVATE_KEY" | base64 -d)
+  - echo $SSH_PRIVATE_KEY | base64 -d |tr -d '\r' | ssh-add -
   - mkdir -p ~/.ssh
   - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 
@@ -10,11 +10,13 @@ deploy_server1:
     name: server1
     url: $SERVER1
   script:
-    - ssh $SSH_USER@$SERVER1 "sudo rm -rf /var/www/demo &&
-      cd /var/www &&
-      git clone https://github.com/otusteamedu/symfony-deploy-2025-08.git demo &&
-      sudo chown www-data:www-data demo -R &&
-      cd demo &&
+    - ssh $SSH_USER@$SERVER1 "cd /app &&
+      sudo docker compose down --remove-orphans &&
+      sudo rm -rf /app &&
+      sudo mkdir /app &&
+      cd /app &&
+      git clone https://github.com/otusteamedu/symfony-deploy-2025-08.git . &&
+      sudo chown www-data:www-data . -R &&
       sh ./deploy.sh $SERVER1 $DATABASE_HOST $DATABASE_USER $DATABASE_PASSWORD $DATABASE_NAME $RABBITMQ_HOST $RABBITMQ_USER $RABBITMQ_PASSWORD"
   only:
     - main
