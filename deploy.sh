@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
-#[[ $(sudo docker ps -q| wc -c) -ne 0 ]] && sudo docker rm -f $(sudo docker ps -q)
 if [[ $(sudo docker ps -q| wc -c) -ne 0 ]]; then
   echo "Docker: removing containers"
+  sudo docker composer stop --remove-orphans
   sudo docker rm -f $(sudo docker ps -q)
 fi
 
@@ -29,4 +29,3 @@ sudo docker compose exec --user root php-fpm php bin/console doctrine:migrations
 
 echo "Chown for files"
 sudo chown www-data:www-data . -R
-
