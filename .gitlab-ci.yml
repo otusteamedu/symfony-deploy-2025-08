@@ -10,13 +10,13 @@ deploy_server1:
     name: server1
     url: $SERVER1
   script:
-    - ssh $SSH_USER@$SERVER1 "cd /app &&
-      sudo docker compose down --remove-orphans &&
-      sudo rm -rf /app &&
+    - ssh $SSH_USER@$SERVER1 "sudo rm -rf /app &&
       sudo mkdir /app &&
+      sudo chmod a+rwx /app &&
       cd /app &&
       git clone https://github.com/otusteamedu/symfony-deploy-2025-08.git . &&
       sudo chown www-data:www-data . -R &&
+      cd /app &&
       sh ./deploy.sh $SERVER1 $DATABASE_HOST $DATABASE_USER $DATABASE_PASSWORD $DATABASE_NAME $RABBITMQ_HOST $RABBITMQ_USER $RABBITMQ_PASSWORD"
   only:
     - main
