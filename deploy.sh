@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-if [[ $(sudo docker ps -aq| wc -c) -ne 0 ]]; then
+if [ $(sudo docker ps -aq| wc -c) -ne 0 ]; then
   echo "Docker: removing containers"
   sudo docker stop $(docker ps -aq)
   sudo docker rm $(docker ps -aq)
