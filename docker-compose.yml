@@ -73,8 +73,6 @@ services:
             - 2024:2024
             - 8125:8125/udp
             - 8126:8126
-        networks:
-            - app_network
 
     grafana:
         image: grafana/grafana
@@ -93,8 +91,6 @@ services:
         image: redis:alpine
         ports:
             - 6379:6379
-        networks:
-            - app_network
 
     rabbitmq:
         image: rabbitmq:3-management
