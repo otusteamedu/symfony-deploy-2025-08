@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
-if [ $(sudo docker ps -aq| wc -c) -ne 0 ]; then
+if [[ $(sudo docker ps -aq| wc -c) -ne 0 ]]; then
   echo "Docker: removing containers"
-  sudo docker stop $(docker ps -aq)
-  sudo docker rm $(docker ps -aq)
+  sudo docker composer down --remove-orphans
+  sudo docker rm -f $(sudo docker ps -aq)
 fi
 
 sudo cp deploy/nginx.conf /etc/nginx/conf.d/demo.conf -f
@@ -29,3 +29,4 @@ sudo docker compose exec --user root php-fpm php bin/console doctrine:migrations
 
 echo "Chown for files"
 sudo chown www-data:www-data . -R
+
