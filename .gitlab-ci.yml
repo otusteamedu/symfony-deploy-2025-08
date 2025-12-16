@@ -11,7 +11,7 @@ deploy_server1:
     name: server1
     url: $SERVER1
   script:
-    - ssh $SSH_USER@$SERVER1 "cd /app &&
+    - ssh $SSH_USER@$SERVER1 "sudo docker compose down --remove-orphans && cd /app &&
       git clone https://github.com/otusteamedu/symfony-deploy-2025-08.git $DIR &&
       sudo chown www-data:www-data $DIR -R &&
       cd $DIR &&
