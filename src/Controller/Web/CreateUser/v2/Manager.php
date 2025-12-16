@@ -38,7 +38,7 @@ readonly class Manager implements ManagerInterface
 
         return new CreatedUserDTO(
             $user->getId(),
-            'From DEPLOY ' . $user->getLogin(),
+            '!!!!!! From !!!!! DEPLOY ' . $user->getLogin(),
             $user->getAvatarLink(),
             $user->getRoles(),
             $user->getCreatedAt()->format('Y-m-d H:i:s'),
