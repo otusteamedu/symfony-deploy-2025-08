@@ -2,7 +2,7 @@
 
 if [[ $(sudo docker ps -aq| wc -c) -ne 0 ]]; then
   echo "Docker: removing containers"
-  sudo docker composer down --remove-orphans
+  sudo docker compose down --remove-orphans
   sudo docker rm -f $(sudo docker ps -aq)
 fi
 
