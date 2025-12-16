@@ -11,6 +11,8 @@ sudo cp deploy/nginx.conf /etc/nginx/conf.d/demo.conf -f
 echo "Restarting nginx"
 sudo service nginx restart
 
+sudo chown www-data:www-data . -R
+
 echo "Docker: build containers"
 sudo docker compose build
 
